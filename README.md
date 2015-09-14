@@ -9,7 +9,7 @@ containing a version string, or the `git` binary to be available.
 Laravel version
 ---------------
 
-This package should work with both Laravel 4 and 5.
+This package works with both Laravel 4 and 5.
 
 Installation
 ------------
