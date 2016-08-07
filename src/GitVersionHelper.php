@@ -52,6 +52,33 @@ class GitVersionHelper
     }
 
     /**
+     * Get total git commits
+     *
+     * @throws CouldNotGetTotalCommitsException if there is no git project
+     * @return string Version string
+     */
+    public static function getTotalCommits()
+    {
+        // Remember current directory
+        $dir = getcwd();
+
+        // Change to base directory
+        chdir(base_path());
+
+        // Get version string from git
+        $output = shell_exec('git rev-list HEAD --count');
+
+        // Change back
+        chdir($dir);
+
+        if ($output === null) {
+            throw new Exception\CouldNotGetTotalCommitsException;
+        }
+
+        return trim($output);
+    }
+
+    /**
      * Get a string identifying the app and version
      *
      * @see getVersion
