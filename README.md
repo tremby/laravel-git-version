@@ -32,6 +32,10 @@ Or you can get your app name and version number such as `my-project/1.0` with
 The app's name is taken from `Config::get('app.name', 'app')`, so you can
 configure it in your `config/app.php` file or leave it as the default of `app`.
 
+A tiny feature to show the total of commits in your git repository
+
+    \Tremby\LaravelGitVersion\GitVersionHelper::getTotalCommits()
+
 View
 ----
 
