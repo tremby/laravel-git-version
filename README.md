@@ -34,6 +34,9 @@ configure it in your `config/app.php` file or leave it as the default of `app`.
 
 ### Recommended usage pattern
 
+Ensure your git tags are pushed to your servers
+so that the versions are described properly.
+
 During development and possibly in staging environments
 allow the version to be determined automatically
 (this is done via `git describe`).
@@ -45,8 +48,8 @@ since this is the command this package would run otherwise).
 When this `version` file exists the package will use its contents
 rather than executing `git`, saving some processor and IO time.
 
-Ensure your git tags are pushed to your servers
-so that the versions are described properly.
+Add `/version` to your `.gitignore` file
+so your working tree stays clean and you don't accidentally commit it.
 
 View
 ----
