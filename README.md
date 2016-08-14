@@ -32,6 +32,22 @@ Or you can get your app name and version number such as `my-project/1.0` with
 The app's name is taken from `Config::get('app.name', 'app')`, so you can
 configure it in your `config/app.php` file or leave it as the default of `app`.
 
+### Recommended usage pattern
+
+During development and possibly in staging environments
+allow the version to be determined automatically
+(this is done via `git describe`).
+
+As part of your production deployment procedure,
+write a `version` file (perhaps via a command like
+`git describe --always --tags --dirty >version`,
+since this is the command this package would run otherwise).
+When this `version` file exists the package will use its contents
+rather than executing `git`, saving some processor and IO time.
+
+Ensure your git tags are pushed to your servers
+so that the versions are described properly.
+
 View
 ----
 
