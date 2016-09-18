@@ -63,4 +63,37 @@ class GitVersionHelper
     {
         return self::appName() . '/' . self::getVersion();
     }
+    
+    /**
+     * Returns comment number with custom length
+     *
+     * @param null $length
+     * @return string comment number
+     *
+     */
+    public static function getCommit($length=null)
+    {
+        // Remember current directory
+        $dir = getcwd();
+
+        // Change to base directory
+        chdir(base_path());
+
+        // Get version string from git
+        $commit = shell_exec('git rev-parse HEAD');
+
+        // Change back
+        chdir($dir);
+
+        if ($commit === null) {
+            throw new Exception\CouldNotGetVersionException;
+        }
+
+        if($length) {
+            return substr($commit, 0, $length);
+        } else {
+            return trim($commit);
+        }
+
+    }
 }
