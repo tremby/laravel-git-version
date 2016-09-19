@@ -65,13 +65,13 @@ class GitVersionHelper
     }
     
     /**
-     * Returns comment number with custom length
+     * Returns comment hash with custom length
      *
      * @param null $length
-     * @return string comment number
+     * @return string
      *
      */
-    public static function getCommit($length=null)
+    public static function getCommitHash($length=null)
     {
         // Remember current directory
         $dir = getcwd();
@@ -90,10 +90,10 @@ class GitVersionHelper
         }
 
         if($length) {
-            return substr($commit, 0, $length);
-        } else {
-            return trim($commit);
+            $commit = substr($commit, 0, $length);
         }
+        
+        return $commit;
 
     }
 }
