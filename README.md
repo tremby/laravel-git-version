@@ -29,9 +29,11 @@ Or you can get your app name and version number such as `my-project/1.0` with
 
     \Tremby\LaravelGitVersion\GitVersionHelper::getNameAndVersion()
 
-Also, you can get the latest `commit hash` by calling this method:
+Also, you can get the latest commit hash by calling this method:
 
-    \Tremby\LaravelGitVersion\GitVersionHelper::getCommitHash(8)
+    \Tremby\LaravelGitVersion\GitVersionHelper::getHash(8)
+    
+`getHash()` method gets an integer which is the length of commit hash. If it's null, `getHash()` returns full width.
 
 The app's name is taken from `Config::get('app.name', 'app')`, so you can
 configure it in your `config/app.php` file or leave it as the default of `app`.
