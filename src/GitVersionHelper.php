@@ -65,13 +65,15 @@ class GitVersionHelper
     }
     
     /**
-     * Returns comment hash with custom length
+     * Return commit hash with custom length
      *
      * @param null $length
+     * @throws CouldNotGetCommitHashException if there is no commit hash and `git
+     * rev-parse HEAD` fails
      * @return string
      *
      */
-    public static function getCommitHash($length=null)
+    public static function getHash($length=null)
     {
         // Remember current directory
         $dir = getcwd();
@@ -86,7 +88,7 @@ class GitVersionHelper
         chdir($dir);
 
         if ($commit === null) {
-            throw new Exception\CouldNotGetVersionException;
+            throw new Exception\CouldNotGetCommitHashException;
         }
 
         if($length) {
