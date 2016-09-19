@@ -94,6 +94,5 @@ class GitVersionHelper
         }
         
         return $commit;
-
     }
 }
