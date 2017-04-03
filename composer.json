@@ -2,7 +2,7 @@
     "name": "tremby/laravel-git-version",
     "description": "A helper to get the current git version of the application",
     "require": {
-        "laravel/framework": ">=4"
+        "illuminate/support": ">=4"
     },
     "license": "MIT",
     "authors": [

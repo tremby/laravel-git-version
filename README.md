@@ -1,20 +1,20 @@
-Laravel project git version getter
-==================================
+Laravel/Lumen project git version getter
+========================================
 
 A helper class to get the current git version of the project.
 
 Expects either a `version` file to exist in the `base_path()` of your project
 containing a version string, or the `git` binary to be available.
 
-Laravel version
----------------
+Framework version
+-----------------
 
-This package works with both Laravel 4 and 5.
+This package works with both Laravel 4 and 5, and also Lumen.
 
 Installation
 ------------
 
-Require it in your Laravel project:
+Require it in your Laravel/Lumen project:
 
     composer require tremby/laravel-git-version
 
