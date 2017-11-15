@@ -21,7 +21,7 @@ class GitVersionHelper
      * If a file <base>/version exists, its contents are trimmed and used.
      * Otherwise we get a suitable string from `git describe`.
      *
-     * @throws CouldNotGetVersionException if there is no version file and `git
+     * @throws Exception\CouldNotGetVersionException if there is no version file and `git
      * describe` fails
      * @return string Version string
      */
@@ -55,7 +55,7 @@ class GitVersionHelper
      * Get a string identifying the app and version
      *
      * @see getVersion
-     * @throws CouldNotGetVersionException if there is no version file and `git
+     * @throws Exception\CouldNotGetVersionException if there is no version file and `git
      * describe` fails
      * @return string App name and version string
      */
