@@ -2,6 +2,7 @@
 namespace Tremby\LaravelGitVersion;
 
 use Config;
+use Symfony\Component\Process\Process;
 
 class GitVersionHelper
 {
@@ -39,7 +40,9 @@ class GitVersionHelper
         chdir(base_path());
 
         // Get version string from git
-        $output = shell_exec('git describe --always --tags --dirty');
+        $process = new Process(['git', 'describe', '--always', '--tags', '--dirty']);
+        $process->run();
+        $output = $process->getOutput();
 
         // Change back
         chdir($dir);
