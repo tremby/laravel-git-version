@@ -40,7 +40,7 @@ class GitVersionHelper
         chdir(base_path());
 
         // Get version string from git
-        $process = new Process(['git describe', '--always', '--tags', '--dirty']);
+        $process = new Process(['git', 'describe', '--always', '--tags', '--dirty']);
         $process->run();
         $output = $process->getOutput();
 
