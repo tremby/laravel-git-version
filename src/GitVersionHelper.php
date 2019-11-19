@@ -3,6 +3,7 @@ namespace Tremby\LaravelGitVersion;
 
 use Config;
 use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\RuntimeException;
 
 class GitVersionHelper
 {
@@ -41,15 +42,15 @@ class GitVersionHelper
 
         // Get version string from git
         $process = new Process(['git', 'describe', '--always', '--tags', '--dirty']);
-        $process->run();
-        $output = $process->getOutput();
+        try {
+            $process->mustRun();
+            $output = $process->getOutput();
+        } catch (RuntimeException $e) {
+            throw new Exception\CouldNotGetVersionException;
+        }
 
         // Change back
         chdir($dir);
-
-        if ($output === null) {
-            throw new Exception\CouldNotGetVersionException;
-        }
 
         return trim($output);
     }
