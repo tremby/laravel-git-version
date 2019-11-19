@@ -41,16 +41,27 @@ class GitVersionHelper
         chdir(base_path());
 
         // Get version string from git
-        $process = new Process(['git', 'describe', '--always', '--tags', '--dirty']);
-        try {
-            $process->mustRun();
-            $output = $process->getOutput();
-        } catch (RuntimeException $e) {
-            throw new Exception\CouldNotGetVersionException;
+        $command = 'git describe --always --tags --dirty';
+        $fail = false;
+        if (class_exists('\Symfony\Component\Process\Process')) {
+            try {
+                $process = new Process($command);
+                $process->mustRun();
+                $output = $process->getOutput();
+            } catch (RuntimeException $e) {
+                $fail = true;
+            }
+        } else {
+            $output = shell_exec($command);
+            $fail = $output === null;
         }
 
         // Change back
         chdir($dir);
+
+        if ($fail) {
+            throw new Exception\CouldNotGetVersionException;
+        }
 
         return trim($output);
     }

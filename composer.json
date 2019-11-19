@@ -2,8 +2,10 @@
     "name": "tremby/laravel-git-version",
     "description": "A helper to get the current git version of the application",
     "require": {
-        "illuminate/support": ">=4",
-        "symfony/process": ">=4"
+        "illuminate/support": ">=4"
+    },
+    "suggest": {
+        "symfony/process": "Used rather than `shell_exec` if available (>=4)."
     },
     "license": "MIT",
     "authors": [

@@ -18,6 +18,15 @@ Require it in your Laravel/Lumen project:
 
     composer require tremby/laravel-git-version
 
+### Optional packages
+
+This module uses [Symfony's Process component][process] if available,
+or falls back to `shell_exec` otherwise.
+So if your deployment environment has `shell_exec` disabled,
+you can work around this by installing `symfony/process`.
+
+[process]: https://github.com/symfony/process
+
 Use
 ---
 
