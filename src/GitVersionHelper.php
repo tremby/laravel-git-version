@@ -1,7 +1,6 @@
 <?php
 namespace Tremby\LaravelGitVersion;
 
-use Config;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\RuntimeException;
 
@@ -14,7 +13,7 @@ class GitVersionHelper
 
     private static function appName()
     {
-        return Config::get('app.name', 'app');
+        return config('app.name', 'app');
     }
 
     /**
@@ -34,30 +33,33 @@ class GitVersionHelper
             return trim(file_get_contents(self::versionFile()));
         }
 
-        // Remember current directory
-        $dir = getcwd();
-
-        // Change to base directory
-        chdir(base_path());
+        $path = base_path();
 
         // Get version string from git
         $command = 'git describe --always --tags --dirty';
         $fail = false;
         if (class_exists('\Symfony\Component\Process\Process')) {
             try {
-                $process = new Process($command);
+                $process = Process::fromShellCommandline($command, $path);
                 $process->mustRun();
                 $output = $process->getOutput();
             } catch (RuntimeException $e) {
                 $fail = true;
             }
         } else {
+            // Remember current directory
+            $dir = getcwd();
+
+            // Change to base directory
+            chdir($path);
+
             $output = shell_exec($command);
+
+            // Change back
+            chdir($dir);
+
             $fail = $output === null;
         }
-
-        // Change back
-        chdir($dir);
 
         if ($fail) {
             throw new Exception\CouldNotGetVersionException;

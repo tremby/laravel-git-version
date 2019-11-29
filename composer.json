@@ -5,7 +5,7 @@
         "illuminate/support": ">=4"
     },
     "suggest": {
-        "symfony/process": "Used rather than `shell_exec` if available (>=4)."
+        "symfony/process": "Used rather than `shell_exec` if available (>=4.2)."
     },
     "license": "MIT",
     "authors": [
