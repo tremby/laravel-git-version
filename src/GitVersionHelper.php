@@ -40,7 +40,6 @@ class GitVersionHelper
         $fail = false;
         if (class_exists('\Symfony\Component\Process\Process')) {
             try {
-                
                 if (method_exists(Process::class, 'fromShellCommandline')) {
                     $process = Process::fromShellCommandline($command, $path);
                 } else {
